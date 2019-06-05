@@ -1,8 +1,8 @@
-package com.xxc.dev.main;
-
-import static org.junit.Assert.assertEquals;
+package com.xxc.dev.routers;
 
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -14,8 +14,5 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
-        for (int i = 6; i <= 32; i++) {
-            System.out.println("<dimen name=\"app_" + i + "_sp\">" + i + "sp</dimen>");
-        }
     }
 }

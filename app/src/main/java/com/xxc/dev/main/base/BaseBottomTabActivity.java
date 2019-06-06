@@ -31,13 +31,13 @@ public abstract class BaseBottomTabActivity extends AbsActivity {
         mBasePager = findViewById(R.id.base_pager);
         mDivider = findViewById(R.id.base_divider);
         mBaseTab = findViewById(R.id.base_tab);
-        initWidgets();
+        initWidgets(savedInstanceState);
         setupTabLocation();
         initPager();
         initTab();
     }
 
-    protected void initWidgets() {
+    protected void initWidgets(Bundle savedInstanceState) {
 
     }
 

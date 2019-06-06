@@ -1,5 +1,6 @@
 package com.xxc.dev.main.test;
 
+import android.os.Bundle;
 import com.mrcd.xrouter.annotation.XPath;
 import com.xxc.dev.common.callback.CallBack2;
 import com.xxc.dev.main.base.BaseBottomTabActivity;
@@ -26,7 +27,7 @@ public class BottomTabActivity extends BaseBottomTabActivity {
     }
 
     @Override
-    protected void initWidgets() {
+    protected void initWidgets(Bundle savedInstanceState) {
         mFragments.add(new HomeFragment());
         mFragments.add(new CoreFragment());
         mFragments.add(new SettingFragment());

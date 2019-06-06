@@ -22,4 +22,11 @@ public class AppUtils {
         return 0;
     }
 
+    public static String getString(int id) {
+        if (null != application) {
+            return application.getString(id);
+        }
+        return "";
+    }
+
 }

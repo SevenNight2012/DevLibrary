@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: "com.mrcd.xrouter.engine"
 
 android {
     compileSdkVersion rootProject.ext.compileSdk
@@ -22,6 +23,10 @@ android {
 
 }
 
+XRouterConfig {
+    excludeProject = [project.name]
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -29,4 +34,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api ("com.mrcd:xrouter-api:1.0.5"){
+        exclude group: 'com.android.support'
+    }
 }

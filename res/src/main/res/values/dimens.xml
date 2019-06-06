@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="app_zero_0">0dp</dimen>
+    <dimen name="app_point_5_dp">0.5dp</dimen>
     <dimen name="app_1_dp">1dp</dimen>
     <dimen name="app_2_dp">2dp</dimen>
     <dimen name="app_3_dp">3dp</dimen>

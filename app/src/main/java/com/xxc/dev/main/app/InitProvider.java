@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import com.xxc.dev.common.AppUtils;
 
 /**
  * 一个用于初始化的provider
@@ -17,8 +18,9 @@ public class InitProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         Context context = getContext();
-        if (context instanceof Application) {
-            Application application = (Application) context;
+        if (null != context) {
+            Application application = (Application) context.getApplicationContext();
+            AppUtils.inject(context);
             application.registerActivityLifecycleCallbacks(new LifecycleObserver());
         }
         return true;

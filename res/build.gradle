@@ -11,6 +11,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -18,6 +23,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        encoding = "UTF-8"
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 
 }

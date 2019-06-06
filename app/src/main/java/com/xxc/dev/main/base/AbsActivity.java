@@ -18,10 +18,10 @@ public abstract class AbsActivity extends AppCompatActivity {
         beforeCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(getContentId());
-        initWidgets(savedInstanceState);
+        init(savedInstanceState);
     }
 
-    protected abstract void initWidgets(Bundle savedInstanceState);
+    protected abstract void init(Bundle savedInstanceState);
 
     protected abstract int getContentId();
 

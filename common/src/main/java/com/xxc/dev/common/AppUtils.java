@@ -1,5 +1,6 @@
 package com.xxc.dev.common;
 
+import android.app.Application;
 import android.content.Context;
 
 /**
@@ -27,6 +28,10 @@ public class AppUtils {
             return application.getString(id);
         }
         return "";
+    }
+
+    public static Application application() {
+        return (Application) application;
     }
 
 }

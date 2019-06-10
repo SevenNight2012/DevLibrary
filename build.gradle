@@ -25,10 +25,10 @@ allprojects {
 }
 
 ext {
-    appcompatVersion = "26.0.0"
-    targetSdk = 26
+    appcompatVersion = "28.0.0"
+    targetSdk = 28
     minSdk = 19
-    compileSdk = 26
+    compileSdk = 28
     routerAnnotation = "1.0.5"
     routerCompiler = "1.0.5"
     gsonVersion = "2.8.5"

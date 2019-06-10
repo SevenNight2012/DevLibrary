@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundImageView">
+        <attr format="boolean" name="is_circle"/>
+        <attr format="boolean" name="is_cover_src"/>
+        <attr format="dimension" name="corner_radius"/>
+        <attr format="dimension" name="corner_top_left_radius"/>
+        <attr format="dimension" name="corner_top_right_radius"/>
+        <attr format="dimension" name="corner_bottom_left_radius"/>
+        <attr format="dimension" name="corner_bottom_right_radius"/>
+        <attr format="dimension" name="border_width"/>
+        <attr format="color" name="border_color"/>
+        <attr format="dimension" name="inner_border_width"/>
+        <attr format="color" name="inner_border_color"/>
+        <attr format="color" name="mask_color"/>
+    </declare-styleable>
+
+</resources>

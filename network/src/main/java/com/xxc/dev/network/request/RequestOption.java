@@ -49,6 +49,7 @@ public class RequestOption {
     private Map<String, String> mParams = new HashMap<>();
     private Map<String, File> mFiles = new HashMap<>();
     private Map<String, List<File>> mFileList = new HashMap<>();
+    private Map<String, String> mExtra = new HashMap<>();
     private Object mTag;
 
     private int mRequestTime = 15 * 1000;
@@ -78,6 +79,13 @@ public class RequestOption {
     public RequestOption setFiles(Map<String, File> files) {
         if (files != null) {
             mFiles.putAll(files);
+        }
+        return this;
+    }
+
+    public RequestOption setExtra(Map<String, String> extra) {
+        if (extra != null) {
+            mExtra.putAll(extra);
         }
         return this;
     }
@@ -115,6 +123,15 @@ public class RequestOption {
         if (files != null) {
             mFileList.put(key, files);
         }
+        return this;
+    }
+
+    public Map<String, String> getExtra() {
+        return mExtra;
+    }
+
+    public RequestOption putExtra(String key, String value) {
+        mExtra.put(key, value);
         return this;
     }
 
@@ -163,6 +180,20 @@ public class RequestOption {
         AbsRequest requester = AbsRequest.instance(this);
         if (requester != null) {
             requester.request(result);
+        }
+    }
+
+    public void download(INetworkResult<File> result) {
+        AbsRequest requester = AbsRequest.instance(this);
+        if (requester != null) {
+            requester.download(result);
+        }
+    }
+
+    public void upload(INetworkResult result) {
+        AbsRequest requester = AbsRequest.instance(this);
+        if (requester != null) {
+            requester.upload(result);
         }
     }
 

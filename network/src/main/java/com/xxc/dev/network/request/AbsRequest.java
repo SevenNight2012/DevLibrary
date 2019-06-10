@@ -1,7 +1,5 @@
 package com.xxc.dev.network.request;
 
-import android.os.Handler;
-import android.os.Looper;
 import com.xxc.dev.network.NetworkManager;
 import com.xxc.dev.network.okgo.OkGoRequest;
 import java.lang.reflect.Constructor;
@@ -12,8 +10,6 @@ import java.lang.reflect.Constructor;
 public abstract class AbsRequest implements INetworkRequest {
 
     public static final String error_constructor_format = "Requester is null,the %s constructor may be illegal";
-
-    protected static final Handler UI_HANDLER = new Handler(Looper.getMainLooper());
 
     protected RequestOption mOption;
 

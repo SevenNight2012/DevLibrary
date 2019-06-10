@@ -1,5 +1,6 @@
 package com.xxc.dev.network.utils;
 
+import com.xxc.dev.network.NetworkManager;
 import com.xxc.dev.network.response.INetworkResult;
 import com.xxc.dev.network.response.JsonNetworkResult;
 import com.xxc.dev.network.response.NetworkError;
@@ -46,5 +47,10 @@ public class GenericUtilsTest {
         };
         Type listErrorType = GenericUtils.getCallBackType(listError);
         System.out.println(listErrorType);
+
+        INetworkResult testResult = new TestResult();
+        Type testType = GenericUtils.getCallBackType(testResult);
+        System.out.println(testType);
+
     }
 }

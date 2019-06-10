@@ -2,8 +2,10 @@ package com.xxc.dev.network;
 
 import com.lzy.okgo.OkGo;
 import com.xxc.dev.common.AppUtils;
+import com.xxc.dev.network.okgo.OkGoRequest;
 import com.xxc.dev.network.request.AbsRequest;
 import com.xxc.dev.network.request.RequestOption;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class NetworkManager {
 
     private List<IRequestInterceptor> mInterceptors = new ArrayList<>();
 
-    private Class<? extends AbsRequest> mRequestClass;
+    private Class<? extends AbsRequest> mRequestClass = OkGoRequest.class;
 
     public static NetworkManager getInstance() {
         return INSTANCE;
@@ -44,6 +46,10 @@ public class NetworkManager {
         return this;
     }
 
+    public List<IRequestInterceptor> getGlobalInterceptors() {
+        return mInterceptors;
+    }
+
     public RequestOption doGet(String url) {
         return new RequestOption(url, RequestOption.REQUEST_GET);
     }
@@ -58,6 +64,24 @@ public class NetworkManager {
 
     public RequestOption doDelete(String url) {
         return new RequestOption(url, RequestOption.REQUEST_DELETE);
+    }
+
+    public void cancel(Object tag) {
+        try {
+            Method cancelMethod = mRequestClass.getMethod("cancel", Object.class);
+            cancelMethod.invoke(null, tag);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelAll() {
+        try {
+            Method cancelMethod = mRequestClass.getMethod("cancelAll");
+            cancelMethod.invoke(null, (Object[]) null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -17,7 +17,10 @@ public class GenericUtils {
      * @return 泛型type
      */
     public static Type getCallBackType(@NonNull INetworkResult callback) {
-        Class callbackClass = callback.getClass();
+        Class callbackClass = iterateType(callback.getClass());
+        if (null == callbackClass) {
+            return null;
+        }
         Type[] interfaces = callbackClass.getGenericInterfaces();
         if (interfaces != null && interfaces.length > 0) {
             Type type = interfaces[0];
@@ -26,7 +29,24 @@ public class GenericUtils {
                 return parameterizedType.getActualTypeArguments()[0];
             }
         }
-        return String.class;
+        return null;
+    }
+
+    private static Class iterateType(Class clazz) {
+        if (Object.class.getName().equalsIgnoreCase(clazz.getName())) {
+            return null;
+        }
+        Class[] interfaces = clazz.getInterfaces();
+        if (null != interfaces && interfaces.length > 0) {
+            for (Class c : interfaces) {
+                if (c.getName().equalsIgnoreCase(INetworkResult.class.getName())) {
+                    return clazz;
+                }
+            }
+            return iterateType(clazz.getSuperclass());
+        } else {
+            return iterateType(clazz.getSuperclass());
+        }
     }
 
 

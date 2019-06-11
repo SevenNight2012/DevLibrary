@@ -33,6 +33,7 @@ public class BannerPagerAdapter extends PagerAdapter implements OnPageChangeList
     private CursorSelector mSelector;
 
     public BannerPagerAdapter(@NonNull PagerItemInflater itemInflater, @NonNull ViewGroup cursorContainer) {
+//        test check
         mItemInflater = itemInflater;
         int count = mItemInflater.modelCounts();
         mSelector = itemInflater.cursorSelector();

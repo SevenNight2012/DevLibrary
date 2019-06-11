@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * 缓存用的Key
  */
-public class MethodKey {
+class MethodKey {
 
     private Method mMethod;
     private Class mRealClass;

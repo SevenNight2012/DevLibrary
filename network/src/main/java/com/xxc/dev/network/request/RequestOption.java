@@ -201,7 +201,7 @@ public class RequestOption {
         AbsRequest instance = AbsRequest.instance(this);
         if (null == instance) {
             String className = NetworkManager.getInstance().getRequestClass().getName();
-            Log.e(NetworkManager.TAG, String.format(AbsRequest.error_constructor_format, className));
+            Log.e(NetworkManager.TAG, String.format(AbsRequest.ERROR_CONSTRUCTOR_FORMAT, className));
             return new OkGoRequest(this);
         }
         return instance;

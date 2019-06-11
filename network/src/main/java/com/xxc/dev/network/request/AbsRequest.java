@@ -9,7 +9,7 @@ import java.lang.reflect.Constructor;
  */
 public abstract class AbsRequest implements INetworkRequest {
 
-    public static final String error_constructor_format = "Requester is null,the %s constructor may be illegal";
+    public static final String ERROR_CONSTRUCTOR_FORMAT = "Requester is null,the %s constructor may be illegal";
 
     protected RequestOption mOption;
 

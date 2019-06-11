@@ -52,6 +52,7 @@ project.subprojects.each { childProject ->
         include '**/*.java'
         exclude '**/gen/**'
         exclude '**/encrypt/**'
+        exclude '**/XRouter.java'
 
         classpath = files()
 

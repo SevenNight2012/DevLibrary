@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepclasseswithmembernames class * {
+    @com.mrcd.xrouter.annotation.XParam <fields>;
+}
+-keepclasseswithmembernames class * {
+    @com.xxc.dev.presenter.CallBy <methods>;
+}

@@ -21,6 +21,7 @@ import com.xxc.dev.common.utils.DisplayUtils;
 
 /**
  * 圆形的ImageView
+ * {@link 'https://github.com/SheHuan/NiceImageView'}
  */
 public class RoundImageView extends ImageView {
 

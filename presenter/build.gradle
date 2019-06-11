@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: "com.mrcd.xrouter.engine"
 
 android {
     compileSdkVersion rootProject.ext.compileSdk
@@ -11,7 +10,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -21,20 +24,24 @@ android {
         }
     }
 
-}
+    compileOptions {
+        encoding = "UTF-8"
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 
-XRouterConfig {
-    excludeProject = [project.name, "presenter"]
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'org.mockito:mockito-core:1.10.19'
 
     implementation "com.android.support:appcompat-v7:${rootProject.ext.appcompatVersion}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    api ("com.mrcd:xrouter-api:1.0.5"){
-        exclude group: 'com.android.support'
-    }
+    implementation project(path: ':common')
 }

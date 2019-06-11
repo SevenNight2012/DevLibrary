@@ -1,4 +1,4 @@
-package com.xxc.dev.main.app;
+package com.xxc.dev.common.utils;
 
 import com.xxc.dev.common.callback.CallBack1;
 import java.lang.ref.WeakReference;
@@ -10,7 +10,7 @@ public class SafeWeakReference<O> {
 
     private WeakReference<O> mWeakReference;
 
-    private SafeWeakReference(O obj) {
+    public SafeWeakReference(O obj) {
         mWeakReference = new WeakReference<>(obj);
     }
 
@@ -25,5 +25,12 @@ public class SafeWeakReference<O> {
             return mWeakReference.get();
         }
         return null;
+    }
+
+    public void clear() {
+        if (mWeakReference != null) {
+            mWeakReference.clear();
+            mWeakReference = null;
+        }
     }
 }

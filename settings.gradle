@@ -1,1 +1,1 @@
-include ':app', ':res', ':routers', ':network', ':common', ':presenter', ':image'
+include ':app', ':res', ':routers', ':network', ':common', ':presenter', ':image', ':permission'

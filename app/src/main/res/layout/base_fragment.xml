@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
+
+    <com.xxc.dev.common.widgets.RoundImageView
+        android:layout_width="@dimen/app_64_dp"
+        android:layout_height="@dimen/app_64_dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:src="@drawable/header"
+        android:layout_marginTop="@dimen/app_60_dp"
+        app:is_cover_src="true"
+        app:is_circle="true"/>
 
     <TextView
         android:id="@+id/text_hint"

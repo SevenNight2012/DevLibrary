@@ -1,6 +1,5 @@
 package com.xxc.dev.network.utils;
 
-import com.xxc.dev.network.NetworkManager;
 import com.xxc.dev.network.response.INetworkResult;
 import com.xxc.dev.network.response.JsonNetworkResult;
 import com.xxc.dev.network.response.NetworkError;
@@ -14,11 +13,12 @@ public class GenericUtilsTest {
     @Test
     public void getCallBackType() {
         JsonNetworkResult result = new JsonNetworkResult();
-        Type jsonType = GenericUtils.getCallBackType(result);
+        Type jsonType = NetworkGenericUtils.getCallBackType(result);
         System.out.println(jsonType);
         StringNetworkResult stringResult = new StringNetworkResult();
-        Type stringType = GenericUtils.getCallBackType(stringResult);
+        Type stringType = NetworkGenericUtils.getCallBackType(stringResult);
         System.out.println(stringType);
+        System.out.println("".getClass().getName());
 
         INetworkResult<List<String>> listNetworkResult=new INetworkResult<List<String>>() {
             @Override
@@ -31,7 +31,7 @@ public class GenericUtilsTest {
 
             }
         };
-        Type listType = GenericUtils.getCallBackType(listNetworkResult);
+        Type listType = NetworkGenericUtils.getCallBackType(listNetworkResult);
         System.out.println(listType);
 
         INetworkResult<List<NetworkError>> listError=new INetworkResult<List<NetworkError>>() {
@@ -45,11 +45,11 @@ public class GenericUtilsTest {
 
             }
         };
-        Type listErrorType = GenericUtils.getCallBackType(listError);
+        Type listErrorType = NetworkGenericUtils.getCallBackType(listError);
         System.out.println(listErrorType);
 
         INetworkResult testResult = new TestResult();
-        Type testType = GenericUtils.getCallBackType(testResult);
+        Type testType = NetworkGenericUtils.getCallBackType(testResult);
         System.out.println(testType);
 
     }

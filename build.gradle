@@ -34,6 +34,7 @@ ext {
     gsonVersion = "2.8.5"
     retrofitVersion = "2.6.0"
     okgoVersion = "2.1.4"
+    glideVersion="4.9.0"
 }
 
 project.subprojects.each { childProject ->

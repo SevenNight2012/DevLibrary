@@ -2,6 +2,7 @@ package com.xxc.dev.image.glide;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Registry;
@@ -31,12 +32,12 @@ public class GlideConfig extends AppGlideModule {
         OkHttpClient okHttpClient = builder.build();
         // glide吧urlConnection替换为okhttp
         registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(okHttpClient));
-
     }
 
     @Override
     public void applyOptions(@NonNull Context context, @NonNull final GlideBuilder builder) {
-        RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        builder.setLogLevel(Log.DEBUG);
+        RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.DATA);
         builder.setDiskCache(new GlideDiskCacheFactory(context))
                .setDefaultRequestOptions(options);
     }

@@ -6,7 +6,7 @@ import com.xxc.dev.common.callback.CallBack1;
 import com.xxc.dev.image.listener.ImageLoadListener;
 
 /**
- *
+ * 按需加载的接口
  */
 public interface IEngine {
 
@@ -17,6 +17,8 @@ public interface IEngine {
     void load(Context context, String url, ImageView imageView, CallBack1<Integer> progressListener);
 
     void load(Context context, String url, ImageView imageView, ImageConfig config, ImageLoadListener listener);
+
+    void load(Context context, String url, ImageView imageView, ImageLoadListener listener, CallBack1<Integer> progressListener);
 
     void load(Context context, String url, ImageView imageView, ImageConfig config, ImageLoadListener listener, CallBack1<Integer> progressListener);
 

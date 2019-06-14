@@ -24,6 +24,9 @@ public class ProgressInterceptor implements Interceptor {
         LISTENER_MAP.remove(url);
     }
 
+    static ProgressListener getListener(String url) {
+        return LISTENER_MAP.get(url);
+    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {

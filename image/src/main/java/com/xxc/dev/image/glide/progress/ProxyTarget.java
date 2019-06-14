@@ -1,6 +1,7 @@
-package com.xxc.dev.image.glide;
+package com.xxc.dev.image.glide.progress;
 
 import android.graphics.drawable.Drawable;
+import android.os.RecoverySystem.ProgressListener;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -25,6 +26,10 @@ public class ProxyTarget<T> extends CustomTarget<T> {
 
     @Override
     public void onResourceReady(@NonNull T resource, @Nullable Transition<? super T> transition) {
+        ProgressListener listener = ProgressInterceptor.getListener(mUrl);
+        if (listener != null) {
+            ProgressInterceptor.removeListener(mUrl);
+        }
         if (mLoadListener != null) {
             mLoadListener.onSuccess(mUrl, resource);
         }
@@ -32,11 +37,18 @@ public class ProxyTarget<T> extends CustomTarget<T> {
 
     @Override
     public void onLoadCleared(@Nullable Drawable placeholder) {
-
+        ProgressListener listener = ProgressInterceptor.getListener(mUrl);
+        if (listener != null) {
+            ProgressInterceptor.removeListener(mUrl);
+        }
     }
 
     @Override
     public void onLoadFailed(@Nullable Drawable errorDrawable) {
+        ProgressListener listener = ProgressInterceptor.getListener(mUrl);
+        if (listener != null) {
+            ProgressInterceptor.removeListener(mUrl);
+        }
         if (mLoadListener != null) {
             mLoadListener.onFailed(new ImageException("Load failed,the image url is  -->>> " + mUrl, -1));
         }

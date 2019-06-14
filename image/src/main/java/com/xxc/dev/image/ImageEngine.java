@@ -51,6 +51,13 @@ public class ImageEngine implements IEngine {
         }
     }
 
+    @Override
+    public void load(Context context, String url, ImageView imageView, ImageLoadListener listener, CallBack1<Integer> progressListener) {
+        if (mEngine != null) {
+            mEngine.load(context, url, imageView, listener, progressListener);
+        }
+    }
+
     public void load(Context context, String url, ImageConfig config, ImageLoadListener listener) {
         if (mEngine != null) {
             mEngine.load(context, url, config, listener);

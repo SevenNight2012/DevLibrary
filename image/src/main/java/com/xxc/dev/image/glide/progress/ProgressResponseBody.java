@@ -1,7 +1,6 @@
 package com.xxc.dev.image.glide.progress;
 
 import android.os.RecoverySystem.ProgressListener;
-import android.util.Log;
 import java.io.IOException;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
@@ -64,7 +63,6 @@ public class ProgressResponseBody extends ResponseBody {
                 mTotalBytesRead += bytesRead;
             }
             int progress = (int) (100f * mTotalBytesRead / fullLength);
-            Log.d(TAG, "download progress is " + progress);
             if (mListener != null && progress != mCurrentProgress) {
                 mListener.onProgress(progress);
             }

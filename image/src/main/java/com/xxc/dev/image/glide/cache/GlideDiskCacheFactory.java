@@ -3,11 +3,12 @@ package com.xxc.dev.image.glide.cache;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskCache.Factory;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.xxc.dev.common.AppUtils;
-import com.xxc.dev.image.glide.SimpleDiskCacheKey;
+import com.xxc.dev.common.callback.CallBack1;
 import java.io.File;
 
 /**
@@ -21,12 +22,12 @@ public class GlideDiskCacheFactory extends DiskLruCacheFactory {
      * @param url 图片URL
      * @return
      */
-    public static File getCacheFile(String url) {
-        DiskCache diskCache = new GlideDiskCacheFactory(AppUtils.application()).build();
-        if (diskCache != null) {
-            return diskCache.get(new SimpleDiskCacheKey(url));
-        }
-        return null;
+    public static void getCacheFile(String url, CallBack1<File> caller) {
+        Glide.with(AppUtils.application())
+             .downloadOnly()
+             .load(url)
+             .onlyRetrieveFromCache(true)
+             .into(new FileTarget(caller));
     }
 
     public static File getDefaultCacheDir(Context context) {

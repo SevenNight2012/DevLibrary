@@ -15,6 +15,7 @@ import com.xxc.dev.image.IEngine;
 import com.xxc.dev.image.ImageConfig;
 import com.xxc.dev.image.glide.cache.GlideDiskCacheFactory;
 import com.xxc.dev.image.glide.progress.ProgressInterceptor;
+import com.xxc.dev.image.glide.progress.ProxyTarget;
 import com.xxc.dev.image.listener.ImageLoadListener;
 import com.xxc.dev.image.utils.ImageGenericUtils;
 import java.lang.reflect.Type;
@@ -24,7 +25,7 @@ import java.lang.reflect.Type;
  */
 public class GlideImageEngine implements IEngine {
 
-    public static final String TAG = "GlideImageEngine";
+    private static final String TAG = "GlideImageEngine";
 
     private static final int NO_LISTENER = -1;
     private static final int BITMAP_TYPE = 0;
@@ -52,6 +53,11 @@ public class GlideImageEngine implements IEngine {
     }
 
     @Override
+    public void load(Context context, String url, ImageView imageView, ImageLoadListener listener, CallBack1<Integer> progressListener) {
+        load(context, url, imageView, null, listener, progressListener);
+    }
+
+    @Override
     public void load(Context context, final String url, ImageView imageView, ImageConfig config, final ImageLoadListener listener, CallBack1<Integer> progressListener) {
         if (null == context) {
             context = AppUtils.application();
@@ -60,15 +66,16 @@ public class GlideImageEngine implements IEngine {
             return;
         }
         if (progressListener != null) {
-            if (null != GlideDiskCacheFactory.getCacheFile(url)) {
-                progressListener.onCallBack(100);
-            } else {
-                ProgressInterceptor.addListener(url, progressListener::onCallBack);
-            }
+            GlideDiskCacheFactory.getCacheFile(url, cache -> {
+                if (cache != null) {
+                    progressListener.onCallBack(100);
+                } else {
+                    ProgressInterceptor.addListener(url, progressListener::onCallBack);
+                }
+            });
         }
         GlideRequests requests = GlideApp.with(context);
         ImageConfig safeConfig = safeNullConfig(config);
-
         int imageType = -1;
         if (null != listener) {
             Type type = ImageGenericUtils.getImageResultType(listener);
@@ -139,7 +146,7 @@ public class GlideImageEngine implements IEngine {
             safeConfig.setEnableDiskCache(config.isEnableDiskCache());
             safeConfig.setEnableMemoryCache(config.isEnableMemoryCache());
         }
-        option = option.diskCacheStrategy(safeConfig.isEnableDiskCache() ? DiskCacheStrategy.RESOURCE : DiskCacheStrategy.NONE)
+        option = option.diskCacheStrategy(safeConfig.isEnableDiskCache() ? DiskCacheStrategy.DATA : DiskCacheStrategy.NONE)
                        .skipMemoryCache(!safeConfig.isEnableMemoryCache());
         if (safeConfig.getLoadingPlaceholder() != -1) {
             option = option.placeholder(safeConfig.getLoadingPlaceholder());

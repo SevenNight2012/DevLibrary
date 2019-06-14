@@ -2,63 +2,45 @@ package com.xxc.dev.permission;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import com.xxc.dev.common.callback.CallBack1;
 import java.util.List;
 
 /**
- * 继承自{@link Fragment}的权限请求fragment
+ * 专门用于请求权限的Fragment，继承自V4包下的fragment
  */
-public class PermissionFragment extends Fragment {
+public class PermissionFragmentV4 extends Fragment {
 
-    public static final String TAG = "PermissionFragment";
+    public static final String PERMISSION_TAG = "PermissionFragmentTag";
 
     private static final int START_SETTING_CODE = 2 << 10;
 
     private PermissionBean mPermission;
 
-    public PermissionFragment setPermission(PermissionBean permission) {
+    public PermissionFragmentV4 setPermission(PermissionBean permission) {
         mPermission = permission;
         return this;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (mPermission != null) {
             doRequest();
         }
     }
 
-    /**
-     * copy from {@link android.support.v4.app.ActivityCompat#requestPermissions(Activity, String[], int)}
-     */
     private void doRequest() {
         String[] permissions = mPermission.getPermissions();
         if (permissions != null && permissions.length > 0) {
-            Activity activity = getActivity();
-
-            if (VERSION.SDK_INT >= VERSION_CODES.M) {
-                requestPermissions(mPermission.getPermissions(), mPermission.getRequestCode());
-            } else {
-                int[] grantResults = new int[permissions.length];
-                PackageManager packageManager = activity.getPackageManager();
-                String packageName = activity.getPackageName();
-                int permissionCount = permissions.length;
-                for (int i = 0; i < permissionCount; ++i) {
-                    grantResults[i] = packageManager.checkPermission(permissions[i], packageName);
-                }
-                onRequestPermissionsResult(mPermission.getRequestCode(), permissions, grantResults);
-            }
+            requestPermissions(mPermission.getPermissions(), mPermission.getRequestCode());
         }
     }
 
@@ -93,7 +75,7 @@ public class PermissionFragment extends Fragment {
         }
 
         int code = mPermission.getRequestCode();
-        if (code == requestCode) {
+        if (requestCode == code) {
             mPermission.handleResult(activity, permissions, grantResults);
         } else {
             Log.e(Sudo.TAG, "request code error:" + code + "   " + requestCode);

@@ -1,5 +1,7 @@
 package com.xxc.dev.main;
 
+import android.Manifest.permission;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -11,11 +13,13 @@ import android.widget.ImageView;
 import com.mrcd.xrouter.XRouter;
 import com.xxc.dev.image.ImageEngine;
 import com.xxc.dev.image.glide.cache.GlideDiskCacheFactory;
+import com.xxc.dev.image.listener.DrawableImageListener;
 import com.xxc.dev.main.test.Constant;
-import java.io.File;
+import com.xxc.dev.permission.Sudo;
 
 public class MainActivity extends AppCompatActivity implements Callback {
 
+    public static final int REQUEST_PERMISSION_CODE = 111;
     public static final String TAG = "MainActivity";
 
     ImageView mPreview;
@@ -28,28 +32,38 @@ public class MainActivity extends AppCompatActivity implements Callback {
         mHandler = new Handler(this);
         mPreview = findViewById(R.id.preview);
 
-        ImageEngine.getInstance().load(this, Constant.URL, mPreview, progress -> {
-            if (progress == 100) {
-                mHandler.sendEmptyMessage(0);
-            }
-            Log.d(TAG, "onCreate: " + progress);
-        });
+        Sudo.getInstance().prepare().setPermission(permission.WRITE_EXTERNAL_STORAGE).setGranted(permissions -> {
+            Log.d(TAG, "onCreate: 所有权限通过");
+            ImageEngine.getInstance()
+                       .load(MainActivity.this, Constant.URL, mPreview, null, new DrawableImageListener() {
+                           @Override
+                           public void onSuccess(String url, Drawable drawable) {
+                               mPreview.setImageDrawable(drawable);
+                               mHandler.sendEmptyMessage(0);
+                           }
+                       }, progress -> Log.d(TAG, "加载进度:" + progress));
+        }).request(this);
     }
 
     public void gotoTarget(View view) {
         XRouter.getInstance().bottomTabActivity().launch(this);
     }
 
+    public void gotoPermission(View view) {
+        XRouter.getInstance().permissionActivity().launch(this);
+    }
+
     @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
             case 0:
-                File file = GlideDiskCacheFactory.getCacheFile(Constant.URL);
-                if (file != null) {
-                    Log.d(TAG, "handleMessage: " + file.getAbsolutePath());
-                } else {
-                    Log.d(TAG, "handleMessage: 文件不存在  ");
-                }
+                GlideDiskCacheFactory.getCacheFile(Constant.URL, file -> {
+                    if (file != null) {
+                        Log.d(TAG, "handleMessage: " + file.getAbsolutePath());
+                    } else {
+                        Log.d(TAG, "handleMessage: 文件不存在  ");
+                    }
+                });
                 break;
         }
         return false;

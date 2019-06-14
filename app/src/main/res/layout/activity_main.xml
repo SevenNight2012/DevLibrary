@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
@@ -11,4 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="gotoTarget"
+        android:text="跳转到底部导航栏界面"
+        android:layout_marginTop="@dimen/app_32_dp"
+        android:textSize="@dimen/app_18_sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_32_dp"
+        android:onClick="gotoPermission"
+        android:text="跳转到权限请求界面"/>
+
+</LinearLayout>

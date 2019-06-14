@@ -10,7 +10,7 @@ import com.xxc.dev.main.R;
 import java.util.List;
 
 /**
- * 单纯的字符串
+ * 单纯的字符串Tab
  */
 public class SimpleStringMaker extends BaseTabViewMaker {
 

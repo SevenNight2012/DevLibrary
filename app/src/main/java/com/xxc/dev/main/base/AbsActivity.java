@@ -26,6 +26,16 @@ public abstract class AbsActivity extends AppCompatActivity {
     protected abstract int getContentId();
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        writeInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+    protected void writeInstanceState(Bundle outState) {
+
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
     }

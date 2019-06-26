@@ -13,7 +13,7 @@ import com.xxc.dev.common.AppUtils;
 import com.xxc.dev.common.callback.CallBack1;
 import com.xxc.dev.image.IEngine;
 import com.xxc.dev.image.ImageConfig;
-import com.xxc.dev.image.glide.cache.GlideDiskCacheFactory;
+import com.xxc.dev.image.ImageEngine;
 import com.xxc.dev.image.glide.progress.ProgressInterceptor;
 import com.xxc.dev.image.glide.progress.ProxyTarget;
 import com.xxc.dev.image.listener.ImageLoadListener;
@@ -66,7 +66,7 @@ public class GlideImageEngine implements IEngine {
             return;
         }
         if (progressListener != null) {
-            GlideDiskCacheFactory.getCacheFile(url, cache -> {
+            ImageEngine.findDiskCache(url, cache -> {
                 if (cache != null) {
                     progressListener.onCallBack(100);
                 } else {

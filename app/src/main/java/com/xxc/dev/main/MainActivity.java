@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import com.mrcd.xrouter.XRouter;
 import com.xxc.dev.image.ImageEngine;
-import com.xxc.dev.image.glide.cache.GlideDiskCacheFactory;
 import com.xxc.dev.image.listener.DrawableImageListener;
 import com.xxc.dev.main.test.Constant;
 import com.xxc.dev.permission.Sudo;
@@ -53,11 +52,15 @@ public class MainActivity extends AppCompatActivity implements Callback {
         XRouter.getInstance().permissionActivity().launch(this);
     }
 
+    public void gotoHttps(View view) {
+        XRouter.getInstance().httpsDemoActivity().launch(this);
+    }
+
     @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
             case 0:
-                GlideDiskCacheFactory.getCacheFile(Constant.URL, file -> {
+                ImageEngine.findDiskCache(Constant.URL, file -> {
                     if (file != null) {
                         Log.d(TAG, "handleMessage: " + file.getAbsolutePath());
                     } else {

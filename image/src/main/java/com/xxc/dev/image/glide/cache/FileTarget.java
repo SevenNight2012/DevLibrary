@@ -8,11 +8,11 @@ import com.bumptech.glide.request.transition.Transition;
 import com.xxc.dev.common.callback.CallBack1;
 import java.io.File;
 
-class FileTarget extends CustomTarget<File> {
+public class FileTarget extends CustomTarget<File> {
 
     private CallBack1<File> mCaller;
 
-    FileTarget(CallBack1<File> fileCallBack) {
+    public FileTarget(CallBack1<File> fileCallBack) {
         mCaller = fileCallBack;
     }
 

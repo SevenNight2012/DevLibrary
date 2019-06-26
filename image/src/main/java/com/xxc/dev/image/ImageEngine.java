@@ -2,9 +2,13 @@ package com.xxc.dev.image;
 
 import android.content.Context;
 import android.widget.ImageView;
+import com.bumptech.glide.Glide;
+import com.xxc.dev.common.AppUtils;
 import com.xxc.dev.common.callback.CallBack1;
 import com.xxc.dev.image.glide.GlideImageEngine;
+import com.xxc.dev.image.glide.cache.FileTarget;
 import com.xxc.dev.image.listener.ImageLoadListener;
+import java.io.File;
 
 /**
  * 图片加载
@@ -87,5 +91,19 @@ public class ImageEngine implements IEngine {
         if (mEngine != null) {
             mEngine.load(context, url, imageView, config, listener, progressListener);
         }
+    }
+
+    /**
+     * 查找本地缓存
+     *
+     * @param url    图片URL
+     * @param caller 回调
+     */
+    public static void findDiskCache(String url, CallBack1<File> caller) {
+        Glide.with(AppUtils.application())
+             .downloadOnly()
+             .load(url)
+             .onlyRetrieveFromCache(true)
+             .into(new FileTarget(caller));
     }
 }

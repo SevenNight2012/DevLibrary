@@ -43,6 +43,10 @@ public class OkGoStringCallBack extends StringCallback {
         if (mResult != null) {
             Type type = NetworkGenericUtils.getCallBackType(mResult);
             if (type != null) {
+                if (type.toString().endsWith(String.class.getName()) && null != mResult) {
+                    mResult.onSuccess(mOption.getTag(), json);
+                    return;
+                }
                 if (mResult != null) {
                     mResult.onSuccess(mOption.getTag(), sGson.fromJson(json, type));
                 }

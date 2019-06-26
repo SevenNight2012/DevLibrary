@@ -3,32 +3,15 @@ package com.xxc.dev.image.glide.cache;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskCache.Factory;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
-import com.xxc.dev.common.AppUtils;
-import com.xxc.dev.common.callback.CallBack1;
 import java.io.File;
 
 /**
  * 自定义的磁盘缓存
  */
 public class GlideDiskCacheFactory extends DiskLruCacheFactory {
-
-    /**
-     * 获取本地缓存的方法
-     *
-     * @param url 图片URL
-     * @return
-     */
-    public static void getCacheFile(String url, CallBack1<File> caller) {
-        Glide.with(AppUtils.application())
-             .downloadOnly()
-             .load(url)
-             .onlyRetrieveFromCache(true)
-             .into(new FileTarget(caller));
-    }
 
     public static File getDefaultCacheDir(Context context) {
         return getCacheDir(context, Factory.DEFAULT_DISK_CACHE_DIR);

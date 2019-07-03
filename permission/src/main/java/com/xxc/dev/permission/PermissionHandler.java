@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PermissionBean {
+public class PermissionHandler {
 
     /**
      * 默认的请求权限码
@@ -39,12 +39,12 @@ public class PermissionBean {
         return mPermissions;
     }
 
-    public PermissionBean setPermissions(String[] permissions) {
+    public PermissionHandler setPermissions(String[] permissions) {
         mPermissions = permissions;
         return this;
     }
 
-    public PermissionBean setPermission(String permission) {
+    public PermissionHandler setPermission(String permission) {
         mPermissions = new String[]{permission};
         return this;
     }
@@ -53,7 +53,7 @@ public class PermissionBean {
         return mGranted;
     }
 
-    public PermissionBean setGranted(CallBack1<List<String>> granted) {
+    public PermissionHandler setGranted(CallBack1<List<String>> granted) {
         mGranted = granted;
         return this;
     }
@@ -62,7 +62,7 @@ public class PermissionBean {
         return mRefused;
     }
 
-    public PermissionBean setRefused(CallBack1<List<String>> refused) {
+    public PermissionHandler setRefused(CallBack1<List<String>> refused) {
         mRefused = refused;
         return this;
     }
@@ -71,7 +71,7 @@ public class PermissionBean {
         return mNeverAsk;
     }
 
-    public PermissionBean setNeverAsk(CallBack1<List<String>> neverAsk) {
+    public PermissionHandler setNeverAsk(CallBack1<List<String>> neverAsk) {
         mNeverAsk = neverAsk;
         return this;
     }
@@ -80,7 +80,7 @@ public class PermissionBean {
         return mRequestCode;
     }
 
-    public PermissionBean setRequestCode(int requestCode) {
+    public PermissionHandler setRequestCode(int requestCode) {
         mRequestCode = requestCode;
         return this;
     }
@@ -89,7 +89,7 @@ public class PermissionBean {
         return mSettingInfo;
     }
 
-    public PermissionBean setSettingInfo(SettingInfo settingInfo) {
+    public PermissionHandler setSettingInfo(SettingInfo settingInfo) {
         mSettingInfo = settingInfo;
         return this;
     }

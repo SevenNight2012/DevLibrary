@@ -16,9 +16,9 @@ public class PermissionFragmentV4 extends Fragment {
 
     public static final String TAG = "PermissionFragmentTag";
 
-    private PermissionBean mPermission;
+    private PermissionHandler mPermission;
 
-    public PermissionFragmentV4 setPermission(PermissionBean permission) {
+    public PermissionFragmentV4 setPermission(PermissionHandler permission) {
         mPermission = permission;
         return this;
     }
@@ -29,7 +29,7 @@ public class PermissionFragmentV4 extends Fragment {
         doRequest(mPermission);
     }
 
-    void doRequest(PermissionBean permission) {
+    void doRequest(PermissionHandler permission) {
         if (null == permission) {
             return;
         }
@@ -42,7 +42,7 @@ public class PermissionFragmentV4 extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PermissionBean.START_SETTING_CODE && null != mPermission) {
+        if (requestCode == PermissionHandler.START_SETTING_CODE && null != mPermission) {
             mPermission.handleActivityResult(getActivity());
         }
     }
@@ -56,7 +56,7 @@ public class PermissionFragmentV4 extends Fragment {
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                 Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
                 intent.setData(uri);
-                startActivityForResult(intent, PermissionBean.START_SETTING_CODE);
+                startActivityForResult(intent, PermissionHandler.START_SETTING_CODE);
             });
         }
     }

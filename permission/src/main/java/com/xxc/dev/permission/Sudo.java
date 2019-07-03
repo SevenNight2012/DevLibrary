@@ -69,8 +69,8 @@ public class Sudo {
         return getUnauthorizedPermission(context, Arrays.asList(permissions));
     }
 
-    public PermissionBean prepare() {
-        return new PermissionBean();
+    public PermissionHandler prepare() {
+        return new PermissionHandler();
     }
 
     private static boolean checkPermission(Context context, String permission) {

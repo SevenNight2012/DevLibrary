@@ -151,4 +151,9 @@
         <property name="max" value="1000" />
     </module>
 
+    <!--检测TODO-->
+    <!-- <module name="TodoComment"> -->
+        <!-- <property name="format" value="TODO"/> -->
+    <!-- </module> -->
+
 </module>

@@ -44,5 +44,5 @@ dependencies {
     annotationProcessor "com.mrcd:xrouter-compiler:${rootProject.ext.routerCompiler}"
     implementation project(path: ':image')
     implementation project(path: ':res')
-    implementation project(path: ':permission')
+    implementation project(path: ':sudo-permission')
 }

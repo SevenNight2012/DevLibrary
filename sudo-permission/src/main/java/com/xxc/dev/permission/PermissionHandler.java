@@ -10,10 +10,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
-import com.xxc.dev.common.callback.CallBack1;
-import com.xxc.dev.common.utils.CollectionUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class PermissionHandler {
@@ -29,9 +28,9 @@ public class PermissionHandler {
     static final int START_SETTING_CODE = 2 << 10;
 
     private String[] mPermissions;
-    private CallBack1<List<String>> mGranted;
-    private CallBack1<List<String>> mRefused;
-    private CallBack1<List<String>> mNeverAsk;
+    private PermissionCallBack mGranted;
+    private PermissionCallBack mRefused;
+    private PermissionCallBack mNeverAsk;
     private int mRequestCode = DEFAULT_REQUEST_PERMISSION_CODE;
     private SettingInfo mSettingInfo = new SettingInfo();
 
@@ -49,29 +48,29 @@ public class PermissionHandler {
         return this;
     }
 
-    CallBack1<List<String>> getGranted() {
+    PermissionCallBack getGranted() {
         return mGranted;
     }
 
-    public PermissionHandler setGranted(CallBack1<List<String>> granted) {
+    public PermissionHandler setGranted(PermissionCallBack granted) {
         mGranted = granted;
         return this;
     }
 
-    CallBack1<List<String>> getRefused() {
+    PermissionCallBack getRefused() {
         return mRefused;
     }
 
-    public PermissionHandler setRefused(CallBack1<List<String>> refused) {
+    public PermissionHandler setRefused(PermissionCallBack refused) {
         mRefused = refused;
         return this;
     }
 
-    CallBack1<List<String>> getNeverAsk() {
+    PermissionCallBack getNeverAsk() {
         return mNeverAsk;
     }
 
-    public PermissionHandler setNeverAsk(CallBack1<List<String>> neverAsk) {
+    public PermissionHandler setNeverAsk(PermissionCallBack neverAsk) {
         mNeverAsk = neverAsk;
         return this;
     }
@@ -184,7 +183,7 @@ public class PermissionHandler {
                     }
                 }
             }
-            if (CollectionUtils.isEmpty(neverAskPermissions)) {
+            if (isCollectionEmpty(neverAskPermissions)) {
                 if (mRefused != null) {
                     mRefused.onCallBack(deniedPermissions);
                 }
@@ -209,5 +208,9 @@ public class PermissionHandler {
         } else {
             activity.finish();
         }
+    }
+
+    boolean isCollectionEmpty(Collection collection) {
+        return null == collection || collection.size() == 0;
     }
 }

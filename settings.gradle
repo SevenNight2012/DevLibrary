@@ -1,1 +1,1 @@
-include ':app', ':res', ':routers', ':network', ':common', ':presenter', ':image', ':permission'
+include ':app', ':res', ':routers', ':network', ':common', ':presenter', ':image', ':sudo-permission'

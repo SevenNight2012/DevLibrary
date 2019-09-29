@@ -17,5 +17,9 @@ public class ExampleUnitTest {
         for (int i = 6; i <= 32; i++) {
             System.out.println("<dimen name=\"app_" + i + "_sp\">" + i + "sp</dimen>");
         }
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i % 3);
+        }
     }
 }

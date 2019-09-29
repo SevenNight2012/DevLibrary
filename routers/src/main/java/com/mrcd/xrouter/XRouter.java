@@ -1,11 +1,12 @@
 package com.mrcd.xrouter;
 
+import com.mrcd.xrouter.routers.AdapterPreviewActivityRouter;
 import com.mrcd.xrouter.routers.BottomTabActivityRouter;
 import com.mrcd.xrouter.routers.HttpsDemoActivityRouter;
 import com.mrcd.xrouter.routers.PermissionActivityRouter;
 
 public final class XRouter {
-  public static XRouter INSTANCE = new XRouter();
+  private static XRouter INSTANCE = new XRouter();
 
   private XRouter() {
   }
@@ -20,6 +21,10 @@ public final class XRouter {
 
   public HttpsDemoActivityRouter httpsDemoActivity() {
     return new HttpsDemoActivityRouter();
+  }
+
+  public AdapterPreviewActivityRouter adapterPreviewActivity() {
+    return new AdapterPreviewActivityRouter();
   }
 
   public PermissionActivityRouter permissionActivity() {

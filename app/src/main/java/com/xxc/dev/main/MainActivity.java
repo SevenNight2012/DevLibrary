@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements Callback {
         XRouter.getInstance().httpsDemoActivity().launch(this);
     }
 
+    public void gotoAdapter(View view) {
+        XRouter.getInstance().adapterPreviewActivity().launch(this);
+    }
+
     @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {

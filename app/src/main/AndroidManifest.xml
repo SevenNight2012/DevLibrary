@@ -28,6 +28,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".test.permission.PermissionActivity"/>
         <activity android:name=".test.HttpsDemoActivity"/>
+        <activity
+            android:name=".test.AdapterPreviewActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:authorities="com.xxc.dev.main.lifecycle"

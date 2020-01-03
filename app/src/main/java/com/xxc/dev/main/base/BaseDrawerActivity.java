@@ -1,8 +1,8 @@
 package com.xxc.dev.main.base;
 
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -54,13 +54,15 @@ public abstract class BaseDrawerActivity extends AbsActivity {
             mInflater.inflate(leftDrawerLayout(), mDrawerLeftContainer);
             initLeftDrawer(mDrawerLeftContainer);
         } else {
-            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, GravityCompat.START);
+//            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, GravityCompat.START);
+            mDrawerLayout.setDrawerLockMode(1, GravityCompat.START);
         }
         if (0 != rightDrawerLayout()) {
             mInflater.inflate(rightDrawerLayout(), mDrawerRightContainer);
             initRightDrawer(mDrawerRightContainer);
         } else {
-            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, GravityCompat.END);
+//            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, GravityCompat.END);
+            mDrawerLayout.setDrawerLockMode(1, GravityCompat.END);
         }
     }
 

@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
-        classpath "com.mrcd:xrouter-gradle-plugin:1.0.12"
+        classpath "com.mrcd:xrouter-gradle-plugin-x:1.2.1.1"
         classpath 'com.novoda:bintray-release:0.9.1'
         
         // NOTE: Do not place your application dependencies here; they belong
@@ -30,12 +30,12 @@ ext {
     targetSdk = 28
     minSdk = 19
     compileSdk = 28
-    routerAnnotation = "1.0.5"
-    routerCompiler = "1.0.5"
+    routerAnnotation = "1.2.1.1"
+    routerCompiler = "1.2.1.1"
     gsonVersion = "2.8.5"
     retrofitVersion = "2.6.0"
     okgoVersion = "2.1.4"
-    glideVersion="4.9.0"
+    glideVersion="4.10.0"
 }
 
 project.subprojects.each { childProject ->

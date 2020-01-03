@@ -1,6 +1,6 @@
 package com.xxc.dev.network.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.xxc.dev.common.utils.GenericUtils;
 import com.xxc.dev.network.response.INetworkResult;
 import java.lang.reflect.Type;

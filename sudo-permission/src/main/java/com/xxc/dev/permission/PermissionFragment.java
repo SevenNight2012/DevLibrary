@@ -9,7 +9,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * 继承自{@link Fragment}的权限请求fragment
@@ -32,7 +32,7 @@ public class PermissionFragment extends Fragment {
     }
 
     /**
-     * copy from {@link android.support.v4.app.ActivityCompat#requestPermissions(Activity, String[], int)}
+     * copy from {@link androidx.core.app.ActivityCompat#requestPermissions(Activity, String[], int)}
      */
     void doRequest(PermissionHandler permission) {
         if (permission == null) {

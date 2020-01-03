@@ -2,8 +2,8 @@ package com.xxc.dev.image.glide.progress;
 
 import android.graphics.drawable.Drawable;
 import android.os.RecoverySystem.ProgressListener;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.xxc.dev.image.ImageException;

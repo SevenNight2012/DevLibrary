@@ -1,7 +1,7 @@
 package com.xxc.dev.network.request;
 
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import com.xxc.dev.network.NetworkManager;
 import com.xxc.dev.network.okgo.OkGoRequest;

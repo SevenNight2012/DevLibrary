@@ -1,6 +1,6 @@
 package com.xxc.dev.main.base.tab;
 
-import android.support.design.widget.TabLayout.Tab;
+import com.google.android.material.tabs.TabLayout.Tab;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
